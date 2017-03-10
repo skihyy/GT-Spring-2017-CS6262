@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 # This spider is used for HTML redirect crawling
 import scrapy
+import re
 from scrapy.selector import Selector
 from scrapy.http import Request
 from browser_simulator.items import BrowserSimulatorItem
+import pdb
 
 
 class TestSpiderSpider(scrapy.Spider):
-    name = "html_redirect_spider"
+    name = "js_redirect_spider"
     # allowed_domains = ["yuyang.bid/"]
-    start_urls = ['https://yuyang.bid/CS6262_test/html_redirects/r1.html']
+    start_urls = ['https://yuyang.bid/CS6262_test/js_redirects/r1.html']
 
     headers = {
         'Connection': 'keep - alive',
@@ -28,15 +30,34 @@ class TestSpiderSpider(scrapy.Spider):
         item = BrowserSimulatorItem()
         # used for search redirect
         selector = Selector(response)
-        item['raw_data'] = selector.xpath('//html/*').extract()
+        raw_data = selector.xpath('//html/*').extract()
+        item['raw_data'] = raw_data
         item['url'] = response.url
         # now just get some header
         item['header'] = response.headers.getlist('Set-Cookie')
         item['body'] = selector.xpath('//body/*').extract()
-        # only do the html redirect now
-        tmp_redirect = selector.xpath('//meta[@http-equiv="refresh" and @content]/@content').extract()[0]
+        # only do the js redirect now
+        # 1 - JS is embed in HTML
+        tmp_redirect = ''
         redirect_result = ''
-        if tmp_redirect:
+        pdb.set_trace()
+        for js in raw_data:
+            # there is a redirect
+            if "window.location.href" in js:
+                redirect_js = re.findall("window.location.href*=*'.*.'", js)[0].encode('ascii', 'ignore')
+                tmp_redirect = re.findall("'.*.'", redirect_js)[0].encode('ascii', 'ignore')
+                # now there is quotation mark in tmp_redirect
+                tmp_redirect = tmp_redirect[1: len(tmp_redirect) - 1]
+                break
+
+        # 2 - JS is linked to another file
+        # go to that file to find
+        if not tmp_redirect:
+            js_file_location = selector.xpath('//script[@type="text/javascript" and @src]/@src').extract()
+            for file_src in js_file_location:
+                redirect_result = self.redirect_handler(file_src, response.url)
+                yield Request(redirect_result, callback=self.parse, headers=self.headers, meta=self.meta)
+        else:
             redirect_result = self.redirect_handler(tmp_redirect, response.url)
             yield Request(redirect_result, callback=self.parse, headers=self.headers, meta=self.meta)
         item['redirect'] = redirect_result
@@ -48,7 +69,7 @@ class TestSpiderSpider(scrapy.Spider):
         # e.g. '0.5;url=http://helloworld.com'
         # e.g. '0.5;url=empty.exe'
         # after split, only need 'empty.exe'
-        redirect_part = redirect.split('url=')[1]
+        redirect_part = redirect
         redirect_head = ''
         # it is already a link
         if redirect_part.startswith('http'):
