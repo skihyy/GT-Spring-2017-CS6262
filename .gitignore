@@ -1,5 +1,7 @@
-# virtualenv environment
+# virtualenv and nodeenv environment
 /environment
+/nodejsEnvironment
+/node_modules
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

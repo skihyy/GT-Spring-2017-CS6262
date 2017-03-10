@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# This spider is used for HTML redirect crawling
 import scrapy
 from scrapy.selector import Selector
 from scrapy.http import Request
@@ -6,7 +7,7 @@ from browser_simulator.items import BrowserSimulatorItem
 
 
 class TestSpiderSpider(scrapy.Spider):
-    name = "test_spider"
+    name = "html_redirect_spider"
     # allowed_domains = ["yuyang.bid/"]
     start_urls = ['https://yuyang.bid/CS6262_test/r1.html']
 
