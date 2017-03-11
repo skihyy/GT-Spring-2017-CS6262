@@ -2,8 +2,6 @@
 
 This crawler will crawl all pages including redirect pages. For example, `r1.html` redirects to `r2.html` then to `r3.html`. The crawler will crawl `r1.html`, `r2.html`, and `r3.html` with `[HTTP:200]` and ignores `[HTTP:300]` status code. Instead, it will retrieve redirect links in the HTML pages or JS files to maunally redirect.
 
-***
-
 ## 1 Crawlers
 ### 1.1 HTML Redirect Crawler
 - This is a test version.
