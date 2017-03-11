@@ -7,7 +7,7 @@
 	Build new environment:
 		nodeenv nodejsEnvironment
 	Start using environment:
-		. nodejsEnvironment/bin/activate
+		source nodejsEnvironment/bin/activate
 
 3. PhantomJS
 	nom install phantomjs // doesn’t work
