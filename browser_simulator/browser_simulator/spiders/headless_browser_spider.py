@@ -3,7 +3,7 @@ import scrapy
 from selenium import webdriver
 from scrapy.http import Request
 from browser_simulator.items import BrowserSimulatorItem
-import pdb
+
 
 class TestSpiderSpider(scrapy.Spider):
     name = "headless_spider"
