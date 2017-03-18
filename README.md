@@ -21,6 +21,7 @@ This crawler will crawl all pages including redirect pages. For example, `r1.htm
 ### 1.4 All-in-one Crawler
 - There are still some problems in it. Currently, the JS redirect cannot be simulated by Phantom JS. To be specific, I cannot stop redirecting in Phantom.
 - For some pages, the CSV output is really wried. This will be solved in the future.
+- **NOTE:** the page sources crawled is all rendered by PhantomJS. Scrapy Spider is only used for finding the redirect link in JS files.
 
 ## 2 Installation
 
