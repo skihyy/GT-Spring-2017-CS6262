@@ -18,8 +18,24 @@ This crawler will crawl all pages including redirect pages. For example, `r1.htm
 - Instead of using default `Selector` in the `Scrapy`, `selenium` and `PhantomJS` is used inside `Scrapy` to crawl pages rendered by JS.
 - May use `CasperJS` in the future. But currently, `selenium` only supports `PhantomJS`.
 
-## 2 Todo
-- Merge 3 cralwers.
-- Make it robust.
-- Make it suitable for all situations.
-- Make it efficient (low priority).
+### 1.4 All-in-one Crawler
+- There are still some problems in it. Currently, the JS redirect cannot be simulated by Phantom JS. To be specific, I cannot stop redirecting in Phantom.
+- For some pages, the CSV output is really wried. This will be solved in the future.
+- **NOTE:** the page sources crawled is all rendered by PhantomJS. Scrapy Spider is only used for finding the redirect link in JS files.
+
+## 2 Installation
+
+### 2.1 Requirements
+- `environment_readme.txt` is provided that `Python`, `Scrapy` in Python, `NodeJS`, and `PhantomJS` in NodeJS is needed for running the program.
+
+### 2.2 To Start
+- Tp start a spider, in the `/browser_simulator` directory, typing `scrapy crawl spider-name` to start.
+- `scrapy-name` can be `all_in_one_spider`, `headless_spider`, `html_redirect_spider`, and `js_redirect_spider`.
+
+## 3 Todo
+- Fix PhantomJS failed to stop redirect function.
+- Wirte a new middleware of saving data. Currently, CSV for big webpages will be shown in messy.
+- Robust improvement.
+
+***
+#### Updated by YH @ Mar 18, 2017.
