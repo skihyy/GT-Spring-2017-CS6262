@@ -5,7 +5,6 @@ import re
 from scrapy.selector import Selector
 from scrapy.http import Request
 from browser_simulator.items import BrowserSimulatorItem
-import pdb
 
 
 class TestSpiderSpider(scrapy.Spider):
@@ -40,7 +39,6 @@ class TestSpiderSpider(scrapy.Spider):
         # 1 - JS is embed in HTML
         tmp_redirect = ''
         redirect_result = ''
-        pdb.set_trace()
         for js in raw_data:
             # there is a redirect
             if "window.location.href" in js:
