@@ -1,0 +1,70 @@
+--------------
+Good percentage: 0.000000
+Accuracy: 0.8873
+True positive rate: 0.0026
+True negative rate: 0.8847
+False positive rate: 0.0026
+False negative rate: 0.1101
+--------------
+Good percentage: 0.050000
+Accuracy: 0.8873
+True positive rate: 0.0021
+True negative rate: 0.8852
+False positive rate: 0.0021
+False negative rate: 0.1106
+--------------
+Good percentage: 0.100000
+Accuracy: 0.8873
+True positive rate: 0.0042
+True negative rate: 0.8831
+False positive rate: 0.0042
+False negative rate: 0.1085
+--------------
+Good percentage: 0.150000
+Accuracy: 0.8862
+True positive rate: 0.0026
+True negative rate: 0.8836
+False positive rate: 0.0037
+False negative rate: 0.1101
+--------------
+Good percentage: 0.200000
+Accuracy: 0.8868
+True positive rate: 0.0026
+True negative rate: 0.8841
+False positive rate: 0.0032
+False negative rate: 0.1101
+--------------
+Good percentage: 0.250000
+Accuracy: 0.8873
+True positive rate: 0.0037
+True negative rate: 0.8836
+False positive rate: 0.0037
+False negative rate: 0.1090
+--------------
+Good percentage: 0.300000
+Accuracy: 0.8894
+True positive rate: 0.0106
+True negative rate: 0.8788
+False positive rate: 0.0085
+False negative rate: 0.1021
+--------------
+Good percentage: 0.350000
+Accuracy: 0.8804
+True positive rate: 0.0026
+True negative rate: 0.8778
+False positive rate: 0.0095
+False negative rate: 0.1101
+--------------
+Good percentage: 0.400000
+Accuracy: 0.8799
+True positive rate: 0.0026
+True negative rate: 0.8772
+False positive rate: 0.0101
+False negative rate: 0.1101
+--------------
+Good percentage: 0.450000
+Accuracy: 0.8910
+True positive rate: 0.0106
+True negative rate: 0.8804
+False positive rate: 0.0069
+False negative rate: 0.1021

@@ -4,7 +4,6 @@ import ast
 import operator
 import random
 import math
-import thread
 
 
 class RandomForest(object):
@@ -253,9 +252,10 @@ class RandomForest(object):
         self.decision_trees = [self.__DecisionTree() for i in range(num_trees)]
 
     # def _bootstrapping(self, data_set, n):
-    def _bootstrapping(self, data_set, good_data, n):
+    def _bootstrapping(self, data_set, good_data, n, percentage=0.05):
         """
         Return sample data and sample data label from a given data set by using bootstrapping method.
+        :type percentage: the percentage of good data that must be throw into the training set
         :param data_set: data set, the last column is the data label
         :param n: the number of rows in the data set
         :return: sample data and sample data label
@@ -268,7 +268,7 @@ class RandomForest(object):
 
         repeat_times = range(n)
         # at least 5% data should be good data
-        good_data_number = n * 0.45
+        good_data_number = n * percentage
         # the length of good data set
         good_data_length = len(good_data)
 
@@ -285,14 +285,14 @@ class RandomForest(object):
         return sample_data, sample_label
         pass
 
-    def bootstrapping(self, data_set):
+    def bootstrapping(self, data_set, percentage=0.05):
         # Separate good and bad data set
         good_data = self.get_good_data(data_set)
 
         # Initialize the bootstrap data sets for each tree.
         for i in range(self.num_trees):
             # data_sample, data_label = self._bootstrapping(data_set, len(data_set))
-            data_sample, data_label = self._bootstrapping(data_set, good_data, len(data_set))
+            data_sample, data_label = self._bootstrapping(data_set, good_data, len(data_set), percentage)
             self.bootstraps_datasets.append(data_sample)
             self.bootstraps_labels.append(data_label)
 
@@ -343,7 +343,7 @@ class RandomForest(object):
         return y
 
 
-def main():
+def main(percentage=0.05, forest_size=10):
     """
     Here, X is assumed to be a matrix with n rows and d columns
     where n is the number of total records
@@ -352,7 +352,11 @@ def main():
 
     XX is similar to X, except that XX also contains the data label for
     each record.
+    :param percentage: The training set good data percentage
+    :param forest_size: The number of decision trees in the forest
+    :return: 
     """
+    print('Good percentage: %f' % percentage)
     X = list()
     y = list()
     XX = list()  # Contains data features and data labels
@@ -369,14 +373,13 @@ def main():
             xline = [ast.literal_eval(i) for i in line]
             XX.append(xline[:])
 
-    # The number of decision trees in the forest
     forest_size = 10
 
     # Initialize a random forest
     randomForest = RandomForest(forest_size)
 
     # Create the bootstrapping data sets
-    randomForest.bootstrapping(XX)
+    randomForest.bootstrapping(XX, percentage)
 
     # Build trees in the forest
     randomForest.fitting()
@@ -401,11 +404,14 @@ def main():
     false_positive_rate = float(false_positive.count(True)) / float(len(false_positive))
     false_negative_rate = float(false_negative.count(True)) / float(len(false_negative))
 
+    print('--------------')
+    print('Good percentage: %f' % percentage)
     print ("Accuracy: %.4f" % accuracy)
     print ("True positive rate: %.4f" % true_positive_rate)
     print ("True negative rate: %.4f" % true_negative_rate)
     print ("False positive rate: %.4f" % false_positive_rate)
     print ("False negative rate: %.4f" % false_negative_rate)
+    print('--------------')
 
 
-main()
+main(percentage=0.45)

@@ -1,5 +1,6 @@
 import csv
 
+"""
 with open('combined.csv', 'rb') as r:
     with open('reformatted.csv', 'wb') as w:
         data = csv.reader(r, delimiter=',')
@@ -14,3 +15,10 @@ with open('combined.csv', 'rb') as r:
         writer.writerows(data)
     w.close()
 r.close()
+"""
+
+with open("data-set.csv", 'rb') as f:
+    # next(f, None)
+
+    for line in csv.reader(f):
+        print(line)
