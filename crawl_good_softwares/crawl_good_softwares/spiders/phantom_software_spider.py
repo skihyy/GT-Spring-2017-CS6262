@@ -8,7 +8,7 @@ from scrapy.http import Request
 
 class TestSpiderSpider(scrapy.Spider):
     name = "phantom_software_spider"
-    start_urls = ['http://download.cnet.com/s/software/windows-free/?sort=most-popular']
+    start_urls = ['http://download.cnet.com/s/software/windows-free/?sort=most-popular&page=']
     current_page = 1
     max_page = 1
 

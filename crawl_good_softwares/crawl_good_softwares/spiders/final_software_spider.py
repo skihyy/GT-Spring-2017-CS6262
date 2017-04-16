@@ -14,7 +14,7 @@ class TestSpiderSpider(scrapy.Spider):
     current_page = 1
     max_page = 1
 
-    driver = webdriver.Chrome()
+    # driver = webdriver.Chrome()
 
     headers = {
         'Connection': 'keep - alive',
