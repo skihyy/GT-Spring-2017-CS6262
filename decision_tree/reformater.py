@@ -35,7 +35,7 @@ with open("new-data-set.csv", 'rb') as r:
     for line in csv.reader(r):
         print(line)
 r.close()
-"""
+
 
 with open("final_bad.csv", 'rb') as r1:
     with open("final_good.csv", 'rb') as r2:
@@ -50,3 +50,14 @@ with open("final_bad.csv", 'rb') as r1:
         w.close()
     r2.close()
 r1.close()
+
+with open("result.csv", 'a+') as w:
+    writer = csv.writer(w)
+    writer.writerow(
+        [0, 1, 2, 3, 4])
+w.close()"""
+
+with open("final-data-new.csv", 'rb') as r:
+    for line in csv.reader(r):
+        print(line)
+r.close()

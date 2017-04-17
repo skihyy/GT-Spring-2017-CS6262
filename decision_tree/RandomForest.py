@@ -4,9 +4,10 @@ import ast
 import operator
 import random
 import math
+import csv
 
 
-class (object):
+class MachineLearning(object):
     class RandomForest(object):
         class __DecisionTree(object):
             tree = {}
@@ -375,13 +376,12 @@ class (object):
         :param forest_size: The number of decision trees in the forest
         :return: 
         """
-        print('Good percentage: %f' % percentage)
         X = list()
         y = list()
         XX = list()  # Contains data features and data labels
 
         # Load data set
-        with open("final-data.csv") as f:
+        with open("final-data-new.csv") as f:
             # skip the first line
             # first line is attribute and label name
             next(f, None)
@@ -424,10 +424,18 @@ class (object):
         false_negative_rate = float(false_negative.count(True)) / float(len(false_negative))
 
         print('--------------')
-        print('Good percentage: %f' % percentage)
         print ("Accuracy: %.4f" % accuracy)
         print ("True positive rate: %.4f" % true_positive_rate)
         print ("True negative rate: %.4f" % true_negative_rate)
         print ("False positive rate: %.4f" % false_positive_rate)
         print ("False negative rate: %.4f" % false_negative_rate)
         print('--------------')
+
+        with open("result.csv", 'a+') as w:
+            writer = csv.writer(w)
+            writer.writerow(
+                [accuracy, true_positive_rate, true_negative_rate, false_positive_rate, false_negative_rate])
+        w.close()
+
+
+MachineLearning()
