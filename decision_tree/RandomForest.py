@@ -381,7 +381,7 @@ class MachineLearning(object):
         XX = list()  # Contains data features and data labels
 
         # Load data set
-        with open("final-data-new.csv") as f:
+        with open("final-data-2.csv") as f:
             # skip the first line
             # first line is attribute and label name
             next(f, None)
@@ -431,7 +431,7 @@ class MachineLearning(object):
         print ("False negative rate: %.4f" % false_negative_rate)
         print('--------------')
 
-        with open("result.csv", 'a+') as w:
+        with open("result-2.csv", 'a+') as w:
             writer = csv.writer(w)
             writer.writerow(
                 [accuracy, true_positive_rate, true_negative_rate, false_positive_rate, false_negative_rate])
