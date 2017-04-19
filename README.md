@@ -74,13 +74,13 @@ Data are all `csv` files or `xslx` files. But to be noted that only `csv` files 
 
 ### 2.2 Running the decision tree
 
-`
+```
 from RandomForest import MachineLearning
 
 ml = MachineLearning() # will start to training the ree
 
 ml.voting(data) # predicting a tuple of data, the data can be gathered from user
-`
+```
 
 ## 3 Some Configurations
 
