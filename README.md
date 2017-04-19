@@ -1,6 +1,6 @@
 # Headless Browser Simulate / Redirect Browser   
 
-This crawler will crawl all pages including redirect pages. For example, `r1.html` redirects to `r2.html` then to `r3.html`. The crawler will crawl `r1.html`, `r2.html`, and `r3.html` with `[HTTP:200]` and ignores `[HTTP:300]` status code. Instead, it will retrieve redirect links in the HTML pages or JS files to maunally redirect.
+This crawler inside `/browser_simulator` will crawl all pages including redirect pages. For example, `r1.html` redirects to `r2.html` then to `r3.html`. The crawler will crawl `r1.html`, `r2.html`, and `r3.html` with `[HTTP:200]` and ignores `[HTTP:300]` status code. Instead, it will retrieve redirect links in the HTML pages or JS files to maunally redirect.
 
 ## 1 Crawlers
 ### 1.1 HTML Redirect Crawler
@@ -37,5 +37,56 @@ This crawler will crawl all pages including redirect pages. For example, `r1.htm
 - Wirte a new middleware of saving data. Currently, CSV for big webpages will be shown in messy.
 - Robust improvement.
 
+# Good Software Download Crawler
+
+The crawler inside `/browser_simulator` will try to cralw download links for good software (only `exe`) for CNET, and Firehourse. Only the most popular ones will be crawled.
+
+## 1 Specifications
+
+### 1.1 CNET
+
+All links will be located at `http://download.cnet.com/s/software/windows-free/?sort=most-popular` section. The start page and end page can be customized.
+
+### 1.2 Firehorse
+
+All links will be located at `http://www.filehorse.com/popular/` section. The start page and end page can be customized.
+
+### 1.3 Spider Types
+
+A normal crawler, PhantomJS with Selenium crawler are provided based on the preferences.
+
+## 2 Installation
+
+This section is almost the same as `Headless Browser Simulate / Redirect Browser`. Please refer to the above section for details.
+
+# Decision Trees for Malware Detection
+
+## 1 Data
+
+Data are all `csv` files or `xslx` files. But to be noted that only `csv` files can be used in ML.
+
+## 2 Installation
+
+### 2.1 Requirements
+
+- `Python` 2.7.10
+- `numpy` module in `Python` is needed for running. 
+
+### 2.2 Running the decision tree
+
+`
+from RandomForest import MachineLearning
+
+ml = MachineLearning() # will start to training the ree
+
+ml.voting(data) # predicting a tuple of data, the data can be gathered from user
+`
+
+## 3 Some Configurations
+
+- line #`27`, control depth of the tree.
+- line #`77`, using binary split.
+- line #`441`, control percentage of good data in each training set.
+
 ***
-#### Updated by YH @ Mar 18, 2017.
+#### Updated by YH @ Apr 19, 2017.
